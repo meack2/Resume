@@ -1,0 +1,273 @@
+%-------------------------------------
+% LaTeX Resume for Software Engineers
+% Author : Leslie Cheng
+% License : MIT
+%-------------------------------------
+
+\documentclass[letterpaper,12pt]{article}[leftmargin=*]
+
+\usepackage[empty]{fullpage}
+\usepackage{enumitem}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+  \usepackage[xetex]{hyperref}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage[pdftex]{hyperref}
+\fi
+\usepackage{fontawesome}
+\usepackage[sfdefault,light]{FiraSans}
+\usepackage{anyfontsize}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+%-------------------------------------------------- SETTINGS HERE --------------------------------------------------
+% Header settings
+\def \fullname {Michael Eack}
+\def \subtitle {Aspiring Software Engineer.}
+\def \emailicon {\faEnvelope}
+\def \emaillink {mailto:michael.eack@gmail.com}
+\def \emailtext {michael.eack@gmail.com}
+\def \linkedinicon {\faLinkedin}
+\def \linkedinlink {https://linkedin.com/in/michael-eack/}
+\def \linkedintext {/michael-eack}
+\def \phoneicon {\faPhone}
+\def \phonetext {+1-309-532-0942}
+
+
+\def \headertype {\singlecol} % \singlecol or \doublecol
+
+% Misc settings
+\def \entryspacing {-0pt}
+\def \bulletstyle {\faAngleRight}
+
+% Define colours
+\definecolor{primary}{HTML}{000000}
+\definecolor{secondary}{HTML}{0D47A1}
+\definecolor{accent}{HTML}{263238}
+\definecolor{links}{HTML}{1565C0}
+
+%------------------------------------------------------------------------------------------------------------------- 
+
+% Defines to make listing easier
+\def \email {\emailicon \hspace{3pt}\href{\emaillink}{\emailtext}}
+\def \linkedin {\linkedinicon \hspace{3pt}\href{\linkedinlink}{\linkedintext}}
+\def \phone {\phoneicon \hspace{3pt}{ \phonetext}}
+%\def \github {\githubicon \hspace{3pt}\href{\githublink}{\githubtext}}
+%\def \website {\websiteicon \hspace{3pt}\href{\websitelink}{\websitetext}}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.55in}
+\addtolength{\evensidemargin}{-0.55in}
+\addtolength{\textwidth}{1.1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.1in}
+
+% Define the link colours
+\hypersetup{
+    colorlinks=true,
+    urlcolor=links,
+}
+
+% Set the margin alignment 
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+%-------------------------
+% Custom commands
+
+% Sections
+\renewcommand{\section}[2]{\vspace{5pt}
+  \colorbox{secondary}{\color{white}\raggedbottom\normalsize\textbf{{#1}{\hspace{7pt}#2}}}
+}
+
+% Entry start and end, for spacing
+\newcommand{\resumeEntryStart}{\begin{itemize}[leftmargin=2.5mm]}
+\newcommand{\resumeEntryEnd}{\end{itemize}\vspace{\entryspacing}}
+
+% Itemized list for the bullet points under an entry, if necessary
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=4.5mm]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% Resume item
+\renewcommand{\labelitemii}{\bulletstyle}
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+% Entry with title, subheading, date(s), and location
+\newcommand{\resumeEntryTSDL}[4]{
+  \vspace{-1pt}\item[]
+    \begin{tabularx}{0.97\textwidth}{X@{\hspace{60pt}}r}
+      \textbf{\color{primary}#1} & {\firabook\color{accent}\small#2} \\
+      \textit{\color{accent}\small#3} & \textit{\color{accent}\small#4} \\
+    \end{tabularx}\vspace{-6pt}
+}
+
+% Entry with title and date(s)
+\newcommand{\resumeEntryTD}[2]{
+  \vspace{-1pt}\item[]
+    \begin{tabularx}{0.97\textwidth}{X@{\hspace{60pt}}r}
+      \textbf{\color{primary}#1} & {\firabook\color{accent}\small#2} \\
+    \end{tabularx}\vspace{-6pt}
+}
+
+% Entry for special (skills)
+\newcommand{\resumeEntryS}[2]{
+  \item[]\small{
+    \textbf{\color{primary}#1 }{ #2 \vspace{-6pt}}
+  }
+}
+
+% Double column header
+\newcommand{\doublecol}[6]{
+  \begin{tabularx}{\textwidth}{Xr}
+    {
+      \begin{tabular}[c]{l}
+        \fontsize{35}{45}\selectfont{\color{primary}{{\textbf{\fullname}}}} \\
+        {\textit{\subtitle}} % You could add a subtitle here
+      \end{tabular}
+    } & {
+      \begin{tabular}[c]{l@{\hspace{1.5em}}l}
+        {\small#4} & {\small#1} \\
+        {\small#5} & {\small#2} \\
+        {\small#6} & {\small#3}
+      \end{tabular}
+    }
+  \end{tabularx}
+}
+
+% Single column header
+\newcommand{\singlecol}[6]{
+  \begin{tabularx}{\textwidth}{Xr}
+    {
+      \begin{tabular}[b]{l}
+        \fontsize{35}{45}\selectfont{\color{primary}{{\textbf{\fullname}}}} \\
+        {\textit{\subtitle}} % You could add a subtitle here
+      \end{tabular}
+    } & {
+      \begin{tabular}[c]{l}
+        {\small#1} \\
+        {\small#2} \\
+        {\small#3} \\
+        {\small#4} \\
+        {\small#5} \\
+        {\small#6}
+      \end{tabular}
+    }
+  \end{tabularx}
+}
+
+\begin{document}
+%-------------------------------------------------- BEGIN HERE --------------------------------------------------
+
+%---------------------------------------------------- HEADER ----------------------------------------------------
+
+\headertype{\linkedin}{\email}{\phone}{\github}{\website}{} % Set the order of items here
+\vspace{-10pt} % Set a negative value to push the body up, and the opposite
+
+
+%-------------------------------------------------- EXPERIENCE --------------------------------------------------
+\section{\faPieChart}{Experience}
+
+  \resumeEntryStart
+    \resumeEntryTSDL
+      {Lockheed Martin Space}{May 2020 -- Present}
+      {Sr. Systems Engineer}{Boulder, CO}
+    \resumeItemListStart
+      \resumeItem{Currently utilizing Bash, Python, and an internal system scripting language to integrate, test, and deploy a new system interface.}
+      \resumeItem {Feature owner for a devops feature which improved quality control within the continuous integration pipeline by integrating schema validation tests.}
+      \resumeItem {Lead test engineer for multiple large scale features. Responsible for performing end to end testing to ensure our new software baseline would meet all customer requirements. Communicated all findings to feature owners and worked together with them to resolve outstanding issues before feature merge.}
+      \resumeItem{Managed all software bugs on behalf of our customer. Collaborated with senior engineers across multiple teams to triage, address, and drive bug resolution to completion. Briefed our government customer updates on progress during regular check-in meetings. This effort resulted in our program reducing the number of unresolved software bugs from 120 to approximately 30.}
+      \resumeItem {Utilized model based systems engineering principles to write system requirements for features.}
+      \resumeItem {Technology used daily: Red Hat Enterprise Linux, Bash, Python, Gitlab, Jira, Confluence}
+      \resumeItem {Technology used occasionally: C++, ELK stack, Mongodb, Apache Zookeeper, Apache Qpid}
+    \resumeItemListEnd
+  \resumeEntryEnd
+
+  \resumeEntryStart
+    \resumeEntryTSDL
+      {U.S. Army, 10th Mountain Division}{Feb. 2019 -- Feb. 2020}
+      {Resources Manager}{Fort Drum, NY}
+    \resumeItemListStart
+      \resumeItem {Managed a team of 3 individuals who ensured that all operations within the organization were well equiped on time. Utilized large-scale SAP systems to ensure the timely delivery of over \$700,000 of equipment and repair parts to customers. }
+      %\resumeItem {Managed a budget of \$3 million annually; recovered \$200,000 to the organization in unused equipment.}
+    \resumeItemListEnd
+  \resumeEntryEnd
+
+  \resumeEntryStart
+    \resumeEntryTSDL
+      {U.S. Army, Advanced Individual Training}{May 2016 -- Aug 2018}
+      {Operations Manager of Drill Instructors}{Ft. Lee, VA}
+    \resumeItemListStart
+        \resumeItem {Led a team of Drill Sergeants to prepare more than 2,000 Soldiers for active duty service as vehicle mechanics. Performed all logistical, administrative, legal, and human resources functions for our unit.}
+        \resumeItem {Selected to serve as the lead operations officer for the headquarters organization based on exemplary performance.}
+    \resumeItemListEnd
+  \resumeEntryEnd
+
+  \resumeEntryStart
+    \resumeEntryTSDL
+      {U.S. Army, 2nd Infantry Division}{Apr. 2015 -- May. 2017}
+      {Operations and Logistics Manager}{Cp Casey, ROK}
+    \resumeItemListStart
+      \resumeItem {Administered procurement and logistical operations by generating operational estimates for fuel, water, and food requirements for an organization of over 4,000 Soldiers during training exercises in a forward deployed environment.}
+      %\resumeItem {Managed the maintenance and operation of 45 vehicles and drivers on over 200 deliveries in a forward deployed environment.}
+    \resumeItemListEnd
+  \resumeEntryEnd
+
+
+%-------------------------------------------------- PROJECTS --------------------------------------------------
+%\section{\faFlask}{Projects}%
+
+  %\resumeEntryStart
+  %  \resumeEntryTD
+   %   {Schrute Farms (Bed and Breakfast)}{}
+  %  \resumeItemListStart
+    %  \resumeItem {A beautiful resort that provides fun activites like tablemaking and mattress making.}
+    %\resumeItemListEnd
+  %\resumeEntryEnd
+
+  %\resumeEntryStart
+   % \resumeEntryTD
+    %  {Dwight Schrute's Gym for Muscles}{}
+    %\resumeItemListStart
+    %  \resumeItem {A built-in gym inside the Dunder Mifflin office complex that will buy your tin for 5 cents a yard.}
+    %\resumeItemListEnd
+  %\resumeEntryEnd
+
+  %\resumeEntryStart
+   % \resumeEntryTD
+    %  {Sesame Avenue Daycare Center for Infants and Toddlers}{}
+    %\resumeItemListStart
+     % \resumeItem {A great daycare for infants with a focus on cognitive development.}
+    %\resumeItemListEnd
+  %\resumeEntryEnd
+
+%-------------------------------------------------- PROGRAMMING SKILLS --------------------------------------------------
+%\section{\faGears}{Skills}
+% \resumeEntryStart
+%  \resumeEntryS{Traits } {Hardworking, Alpha Male, Jackhammer, Merciless, Insatiable}
+%  \resumeEntryS{Talents } {Karate (Black Belt), Jujitsu, Werewolf Hunting, Table Making}
+% \resumeEntryEnd
+%-------------------------------------------------- EDUCATION --------------------------------------------------
+\section{\faGraduationCap}{Education}
+
+  \resumeEntryStart
+    \resumeEntryTSDL
+    {Colorado School of Mines}{Present -- 12/2024 (est)}
+    {MS Computer Science Bridge Program} {Golden, CO}
+   \resumeEntryEnd
+   
+   \resumeEntryStart
+    \resumeEntryTSDL
+      {United States Military Academy}{2010 -- 2014}
+      {BS Mechanical Engineering 3.1 GPA}{West Point, NY}
+  \resumeEntryEnd
+
+
+\end{document}
